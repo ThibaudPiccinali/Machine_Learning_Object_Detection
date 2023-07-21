@@ -25,23 +25,23 @@ Suivre l'ensemble de ce tutoriel (https://tensorflow-object-detection-api-tutori
 
         python generate_tfrecord.py -x C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/images/focal_point/train -l C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/label_map.pbtxt -o C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/train.record
 
-    python generate_tfrecord.py -x C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/   images/focal_point/test -l C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/label_map.pbtxt -o C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/test.record
+        python generate_tfrecord.py -x C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/   images/focal_point/test -l C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/label_map.pbtxt -o C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/test.record
 
 - 2 Il faut ensuite mettre à jour le fichier 'pipeline.config' dans le dossier 'models' (suivre les indications du tutoriel https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html#configure-the-training-pipeline ) : 
 
 - 3 Il ne reste plus qu'à lancer l'entraînement (on exécute dans le dossier 'training_demo'). Faire bien attention à modifier le nom d'un modèle si différent !
 
-    python model_main_tf2.py --model_dir=models/efficientdet_d0_coco17_tpu-32_focal_point --pipeline_config_path=models/efficientdet_d0_coco17_tpu-32_focal_point/pipeline.config
+        python model_main_tf2.py --model_dir=models/efficientdet_d0_coco17_tpu-32_focal_point --pipeline_config_path=models/efficientdet_d0_coco17_tpu-32_focal_point/pipeline.config
 
 - 4 Optionnel : Si on veut observer le modèle s'entraîner (exécuté sur un nouveau terminal dans 'training_demo') :
 
-    tensorboard --logdir=models/efficientdet_d0_coco17_tpu-32_focal_point 
+        tensorboard --logdir=models/efficientdet_d0_coco17_tpu-32_focal_point 
  
 Puis ouvrir dans un navigateur  : 'http://localhost:6006/'
 
 - 5 Enfin pour exporter le modèle (exécuté dans 'training_demo') :
 
-    python .\exporter_main_v2.py --input_type image_tensor --pipeline_config_path .\models\efficientdet_d0_coco17_tpu-32_focal_point\pipeline.config --trained_checkpoint_dir .\models\efficientdet_d0_coco17_tpu-32_focal_point --output_directory .\exported-models\my_model_focal_point
+        python .\exporter_main_v2.py --input_type image_tensor --pipeline_config_path .\models\efficientdet_d0_coco17_tpu-32_focal_point\pipeline.config --trained_checkpoint_dir .\models\efficientdet_d0_coco17_tpu-32_focal_point --output_directory .\exported-models\my_model_focal_point
 
 
 Attention : le modèle ne termine pas son entrainement de lui-même ! Il faut forcer l'arrêt de ce dernier (CTRL+C, fermer le terminal...). Mais pas de panique: le modèle fait des sauvegarde de manière automatique ! (ça peut notamment être utile si vous voulez continuer un entraînement plus tard).
