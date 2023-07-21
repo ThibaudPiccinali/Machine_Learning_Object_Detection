@@ -23,7 +23,7 @@ Suivre l'ensemble de ce tutoriel (https://tensorflow-object-detection-api-tutori
 
 - 1: Dans un premier temps il faut convertir les fichiers .xml (de votre dataset) en fichier . record. Pour cela on exécute le code suivant (attention à bien modifier le nom des chemins d'accès) dans le dossier 'TensorFlow/scripts/preprocessing' : 
 
-    python generate_tfrecord.py -x C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/images/focal_point/train -l C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/label_map.pbtxt -o C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/train.record
+        python generate_tfrecord.py -x C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/images/focal_point/train -l C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/label_map.pbtxt -o C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/train.record
 
     python generate_tfrecord.py -x C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/   images/focal_point/test -l C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/label_map.pbtxt -o C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/test.record
 
