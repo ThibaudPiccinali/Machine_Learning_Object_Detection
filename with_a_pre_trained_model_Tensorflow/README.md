@@ -58,10 +58,10 @@ Attention : le modèle ne termine pas son entraînement de lui-même ! Il faut f
 Enfin, pour cette dernière partie, constituez deux sous-dossiers dans le dossier *images/predictions*, nommés *input* et *output*. Ces derniers serviront à stocker les images à prédire et les prédictions respectivement.
 
 Il suffit ensuite d'exécuter le code *plot_object_detection_saved_model* en ayant modifié au préalable les variables *PATH_TO_MODEL_DIR*, *PATH_TO_TEST_DIR*, *PATH_TO_SAVE*, *PATH_TO_LABELS*: 
-        - *PATH_TO_MODEL_DIR* : C'est le dossier qui contient le modèle entrainé,
-        - *PATH_TO_TEST_DIR* : Celui qui contient les images dont on veut faire la prediction,
-        - *PATH_TO_SAVE* : Celui dans lequel se sauvegarde les images avec la prediction,
-        - *PATH_TO_LABELS* : C'est le fichier qui contient les labels du dataset.
+- *PATH_TO_MODEL_DIR* : C'est le dossier qui contient le modèle entrainé,
+- *PATH_TO_TEST_DIR* : Celui qui contient les images dont on veut faire la prediction,
+- *PATH_TO_SAVE* : Celui dans lequel se sauvegarde les images avec la prediction,
+- *PATH_TO_LABELS* : C'est le fichier qui contient les labels du dataset.
 
 Vous devriez trouver dans le dossier *images/predictions/output* l'ensemble de vos résultats.
 
@@ -122,9 +122,9 @@ Attention: the model does not end its training on its own! You need to stop it m
 Finally, for this last part, create two sub-folders in the *images/predictions* folder, named input and output. These will be used to store the images to predict and the respective predictions.
 
 Then, simply execute the *plot_object_detection_saved_model* code after modifying the variables *PATH_TO_MODEL_DIR*, *PATH_TO_TEST_DIR*, *PATH_TO_SAVE*, *PATH_TO_LABELS*:
-        - *PATH_TO_MODEL_DIR* : This is the folder containing the trained model.
-        - *PATH_TO_TEST_DIR* : The folder containing the images you want to make predictions on.
-        - *PATH_TO_SAVE* : The folder where images with predictions will be saved.
-        - *PATH_TO_LABELS* : This is the file containing the dataset labels.
+- *PATH_TO_MODEL_DIR* : This is the folder containing the trained model.
+- *PATH_TO_TEST_DIR* : The folder containing the images you want to make predictions on.
+- *PATH_TO_SAVE* : The folder where images with predictions will be saved.
+- *PATH_TO_LABELS* : This is the file containing the dataset labels.
 
 You should find all your results in the *images/predictions/output* folder.
