@@ -97,7 +97,6 @@ model = Sequential([
     Conv2D(128, (3, 3), activation='relu'),
     MaxPooling2D(2, 2),
 
-
     # Couche de mise à plat
     Flatten(),
 
@@ -118,7 +117,7 @@ model.summary()
 train = model.fit(train_images, train_labels, epochs=epochs, batch_size=batch_size, validation_data=(val_images, val_labels))
 
 ## Sauvegarde du modèle (pour de futur utilisation)
-model.save("model_landscape_object.h5")
+model.save("model.h5")
 
 # Montre les résultats
 plot_scores(train)

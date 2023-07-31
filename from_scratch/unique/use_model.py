@@ -14,17 +14,17 @@ from PIL import Image
 import matplotlib.image as mpimg
 
 # Dossier contenant les images d'entrée
-input_folder = "usemodel_landscape_object/input"
+input_folder = "usemodel/input"
 
 # Dossier de sortie pour les images modifiées
-output_folder = "usemodel_landscape_object/output"
+output_folder = "usemodel/output"
 
 # Définir les paramètres de prétraitement
 img_width = 1024
 img_height = 1024
 
 # Charger le modèle
-model = load_model('model_landscape_object.h5')
+model = load_model('model.h5')
 
 # Parcours des fichiers du dossier d'entrée
 for filename in os.listdir(input_folder):
@@ -45,7 +45,7 @@ for filename in os.listdir(input_folder):
     x1, y1, x2, y2 = pred[0]
 
     # Création de l'objet Figure et de l'axe avec la taille de l'image
-    fig, ax = plt.subplots(figsize=(1024 / 100, 1024 / 100))
+    fig, ax = plt.subplots(figsize=(img_width / 100, img_height / 100))
 
     # Affichage de l'image
     ax.imshow(image)
@@ -59,8 +59,8 @@ for filename in os.listdir(input_folder):
     plt.axis('off')
 
     # Réglage des limites de l'axe pour correspondre à l'image
-    ax.set_xlim(0, 1024)
-    ax.set_ylim(1024, 0)
+    ax.set_xlim(0, img_width)
+    ax.set_ylim(img_height, 0)
 
     # Suppression des espaces blancs autour de l'image
     plt.subplots_adjust(left=0, right=1, top=1, bottom=0)

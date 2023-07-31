@@ -20,8 +20,8 @@ input_folder = "usemodel/input"
 output_folder = "usemodel/output"
 
 # Définir les paramètres de prétraitement
-img_width = 676
-img_height = 380
+img_width = 1024
+img_height = 1024
 
 # Charger le modèle
 model = load_model('model.h5')
@@ -49,24 +49,23 @@ for filename in os.listdir(input_folder):
 
     # Récupérer les coordonnées des bounding box
     c=0
-    for i in range(0,len(pred[0])//5):
-        focalpoint=pred[0][c]
-        x1=pred[0][c+1]
-        y1=pred[0][c+2] 
-        x2=pred[0][c+3]
-        y2=pred[0][c+4]
-        if(focalpoint==1):
+    for i in range(0,len(pred[0])//4):
+        x1=pred[0][c]
+        y1=pred[0][c+1]
+        x2=pred[0][c+2] 
+        y2=pred[0][c+3]
+        if(x1>0 and y1>0 and x2>0 and y2>0):
             # Dessiner les boîtes englobantes pour chaque focal point détecté
             rect = patches.Rectangle((int(x1), int(y1)), int(x2) - int(x1), int(y2) - int(y1), linewidth=2, edgecolor='g', facecolor='none')
             ax.add_patch(rect)
-        c=c+5
+        c=c+4
 
     # Afficher l'axe sans les graduations
     plt.axis('off')
 
     # Réglage des limites de l'axe pour correspondre à l'image
-    ax.set_xlim(0, img_width)
-    ax.set_ylim(img_height, 0)
+    ax.set_xlim(0, 1024)
+    ax.set_ylim(1024, 0)
 
     # Suppression des espaces blancs autour de l'image
     plt.subplots_adjust(left=0, right=1, top=1, bottom=0)

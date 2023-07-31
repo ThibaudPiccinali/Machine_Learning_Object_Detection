@@ -24,13 +24,13 @@ def plot_scores(train):
     plt.show()
 
 # Définir les paramètres de prétraitement
-img_width = 676
-img_height = 380
-nbr_focal_point_max = 7
+img_width = 1024
+img_height = 1024
+nbr_detection_max = 3
 
 # Définir les paramètres de l'entraînement
-batch_size = 32
-epochs = 32
+batch_size = 5
+epochs = 64
 
 # Définir les chemins d'accès aux données
 data_dir = 'dataset/images'
@@ -55,7 +55,7 @@ def load_data_from_xml(xml_path, img_width, img_height, max_focal_point):
         ymin = int(bndbox.find('ymin').text)
         xmax = int(bndbox.find('xmax').text)
         ymax = int(bndbox.find('ymax').text)
-        annotations.append([1,xmin, ymin, xmax, ymax])
+        annotations.append([xmin, ymin, xmax, ymax])
         count += 1
 
     # Charger l'image
@@ -70,7 +70,7 @@ def load_data_from_xml(xml_path, img_width, img_height, max_focal_point):
 
     # Compléter avec des coordonnées vides si moins de focal point détecté
     while count < max_focal_point:
-        annotations.append([0, 0, 0, 0, 0])
+        annotations.append([0, 0, 0, 0])
         count += 1
     return img, annotations
 
@@ -83,7 +83,7 @@ def load_data(folder, img_width, img_height):
     images = []
     annotations = []
     for xml_file in xml_files:
-        img, annot = load_data_from_xml(xml_file, img_width, img_height, nbr_focal_point_max)
+        img, annot = load_data_from_xml(xml_file, img_width, img_height, nbr_detection_max)
         images.append(img)
         annotations.append(annot)
     print( np.array([np.array(x) for x in annotations]))
@@ -105,37 +105,20 @@ model = Sequential([
     # Première couche de convolution
     Conv2D(16, (3, 3), activation='relu', input_shape=(img_height, img_width, 3)),
     MaxPooling2D(2, 2),
-
-    # Deuxième couche de convolution
-    Conv2D(32, (3, 3), activation='relu'),
-    MaxPooling2D(2, 2),
-
-    # Deuxième couche de convolution
-    Conv2D(64, (3, 3), activation='relu'),
-    MaxPooling2D(2, 2),
-
-        # Deuxième couche de convolution
-    Conv2D(128, (3, 3), activation='relu'),
-    MaxPooling2D(2, 2),
-
-            # Deuxième couche de convolution
-    Conv2D(256, (3, 3), activation='relu'),
-    MaxPooling2D(2, 2),
-
+    
     # Couche de mise à plat
     Flatten(),
 
     # Couche entièrement connectée
-    Dense(512, activation='relu'),
+    Dense(32, activation='relu'),
 
     # Couche de sortie
-    Dense(nbr_focal_point_max * 5, activation='linear'),  # nbr_focal_point_max * 4 coordonnées (xmin, ymin, xmax, ymax)
-
+    Dense(nbr_detection_max * 4, activation='linear'),  # nbr_detection_max * 4 coordonnées (xmin, ymin, xmax, ymax)
 
 ])
 
 # Compiler le modèle
-model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
+model.compile(optimizer='adam', loss='mean_absolute_error', metrics=['accuracy'])
 
 # Afficher un résumé de l'architecture du modèle
 model.summary()
