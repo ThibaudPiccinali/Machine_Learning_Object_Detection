@@ -5,7 +5,7 @@ This folder contains a set of elements that should allow you to implement and tr
 
 ### Prerequisites: 
 
-Firstly, you need to follow the entire tutorial available at this link: https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/install.html (only follow the *Installation* section). This tutorial will properly configure your machine and download all the necessary libraries. Let us quickly summarize the organization of your folders (inside the *workspace/training_demo* sub-folder) that you should have after following the entire tutorial, along with their respective purposes (if you do not understand everything described, do not worry: each element will be explained in due time):
+Firstly, you need to follow the entire tutorial available at this link: https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/install.html (only follow the *Installation* section). This tutorial will properly configure your machine and download all the necessary libraries. Let us quickly summarize the organization of your folders that you should have after following the entire tutorial, along with their respective purposes (if you do not understand everything described, do not worry: each element will be explained in due time):
 
 - The *annotations* folder: It contains a *.PBTXT* file that defines the names of the different classes for your model. It also includes *.record* files, which are equivalent to all your *.xml* files from your dataset but converted to a format readable by *Tensorflow* libraries.
 
@@ -70,7 +70,7 @@ Ce dossier contient un ensemble d'éléments qui devraient permettre d'implémen
 
 ### Prérequis : 
 
-Tout d'abord, il convient de suivre l'ensemble du tutoriel présent sur ce lien : https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/install.html (suivez uniquement la partie *Installation*). Ce dernier permet de bien configurer votre machine et de télécharger toutes les bibliothèques nécessaires. Résumons rapidement l'organisation de vos dossiers (dans le sous-dossier *workspace/training_demo*) que vous devriez avoir après avoir suivi l'ensemble de ce tutoriel, ainsi que leurs utilités respectives (si vous ne comprenez pas tout ce qui est décrit, ce n'est pas grave : chaque élément sera expliqué en temps voulu): 
+Tout d'abord, il convient de suivre l'ensemble du tutoriel présent sur ce lien : https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/install.html (suivez uniquement la partie *Installation*). Ce dernier permet de bien configurer votre machine et de télécharger toutes les bibliothèques nécessaires. Résumons rapidement l'organisation de vos dossiers que vous devriez avoir après avoir suivi l'ensemble de ce tutoriel, ainsi que leurs utilités respectives (si vous ne comprenez pas tout ce qui est décrit, ce n'est pas grave : chaque élément sera expliqué en temps voulu): 
 
 - Le dossier *annotations* : contiendra un fichier *.PBTXT* qui servira à définir à votre modèle le nom des (différentes) classes. Il comprendra également des fichiers *.record* (équivalent de l'ensemble de vos fichiers *.xml* de votre dataset mais mis à un format lisible pour les bibliothèques de *Tensorflow*).
 
