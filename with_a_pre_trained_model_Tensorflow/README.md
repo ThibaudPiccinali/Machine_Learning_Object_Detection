@@ -27,9 +27,9 @@ If you have already followed this tutorial at least once and you just want to tr
 
 - Step 1: First, you need to convert the *.xml* files from your dataset to *.record* files. To do this, execute the following code (be sure to modify the path names correctly; the code below is just an example) in the *TensorFlow/scripts/preprocessing* folder: 
 
-        python generate_tfrecord.py -x C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/images/focal_point/train -l C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/label_map.pbtxt -o C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/train.record
+        python generate_tfrecord.py -x C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/images/human/train -l C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/human/label_map.pbtxt -o C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/human/train.record
 
-        python generate_tfrecord.py -x C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/images/focal_point/test -l C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/label_map.pbtxt -o C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/test.record
+        python generate_tfrecord.py -x C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/images/human/test -l C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/human/label_map.pbtxt -o C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/human/test.record
 
 You should find the two corresponding files in the annotations folder. Be sure to modify the *label_map.pbtxt* file beforehand if necessary!
 
@@ -37,17 +37,17 @@ You should find the two corresponding files in the annotations folder. Be sure t
 
 - Step 3: Now, all that is left is to start the training (execute this in the *training_demo* folder). Be careful to modify the model name if different!
 
-        python model_main_tf2.py --model_dir=models/efficientdet_d0_coco17_tpu-32_focal_point --pipeline_config_path=models/efficientdet_d0_coco17_tpu-32_focal_point/pipeline.config
+        python model_main_tf2.py --model_dir=models/efficientdet_d0_coco17_tpu-32_human --pipeline_config_path=models/efficientdet_d0_coco17_tpu-32_human/pipeline.config
 
-- Step 4 Optional: If you want to observe the model training (execute this in a new terminal in *training_demo*):
+- Step 4 (Optional): If you want to observe the model training (execute this in a new terminal in *training_demo*):
 
-        tensorboard --logdir=models/efficientdet_d0_coco17_tpu-32_focal_point 
+        tensorboard --logdir=models/efficientdet_d0_coco17_tpu-32_human 
  
 Then open in a browser: 'http://localhost:6006/'
 
 - Step 5: Finally, to export the model (execute this in *training_demo*):
 
-        python .\exporter_main_v2.py --input_type image_tensor --pipeline_config_path .\models\efficientdet_d0_coco17_tpu-32_focal_point\pipeline.config --trained_checkpoint_dir .\models\efficientdet_d0_coco17_tpu-32_focal_point --output_directory .\exported-models\my_model_focal_point
+        python .\exporter_main_v2.py --input_type image_tensor --pipeline_config_path .\models\efficientdet_d0_coco17_tpu-32_human\pipeline.config --trained_checkpoint_dir .\models\efficientdet_d0_coco17_tpu-32_human --output_directory .\exported-models\my_model_human
 
 
 Attention: the model does not end its training on its own! You need to stop it manually (CTRL+C, close the terminal, etc.). But do not worry: the model automatically makes backups, which can be useful if you want to continue training later.
@@ -90,29 +90,29 @@ Si vous avez déjà suivi ce tutoriel au moins une fois et que vous souhaitez ju
 
 ### Comment entraîner un modèle sur un nouveau dataset ?
 
-- 1 Dans un premier temps, il faut convertir les fichiers *.xml* (de votre dataset) en fichiers *.record*. Pour cela, on exécute le code suivant (attention à bien modifier le nom des chemins d'accès : le code ci-dessous est à titre d'exemple) dans le dossier *TensorFlow/scripts/preprocessing* : 
+- Etape 1: Dans un premier temps, il faut convertir les fichiers *.xml* (de votre dataset) en fichiers *.record*. Pour cela, on exécute le code suivant (attention à bien modifier le nom des chemins d'accès : le code ci-dessous est à titre d'exemple) dans le dossier *TensorFlow/scripts/preprocessing* : 
 
-        python generate_tfrecord.py -x C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/images/focal_point/train -l C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/label_map.pbtxt -o C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/train.record
+        python generate_tfrecord.py -x C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/images/human/train -l C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/human/label_map.pbtxt -o C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/human/train.record
 
-        python generate_tfrecord.py -x C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/images/focal_point/test -l C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/label_map.pbtxt -o C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/focal_point/test.record
+        python generate_tfrecord.py -x C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/images/human/test -l C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/human/label_map.pbtxt -o C:/Users/islab/Desktop/Tensorflow/workspace/training_demo/annotations/human/test.record
 
 Vous devriez trouver les deux fichiers correspondants dans le dossier *annotations*. Attention, n'oubliez pas de modifier au préalable le fichier *label_map.pbtxt* si nécessaire !
 
-- 2 Il faut ensuite mettre à jour le fichier *pipeline.config* dans le dossier *models*. Pour cela, je vous conseille de reprendre les indications du tutoriel : https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html#configure-the-training-pipeline.
+- Etape 2: Il faut ensuite mettre à jour le fichier *pipeline.config* dans le dossier *models*. Pour cela, je vous conseille de reprendre les indications du tutoriel : https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html#configure-the-training-pipeline.
 
-- 3 Il ne reste plus qu'à lancer l'entraînement (on exécute dans le dossier *training_demo*). Faites bien attention à modifier le nom d'un modèle si différent !
+- Etape 3: Il ne reste plus qu'à lancer l'entraînement (on exécute dans le dossier *training_demo*). Faites bien attention à modifier le nom d'un modèle si différent !
 
-        python model_main_tf2.py --model_dir=models/efficientdet_d0_coco17_tpu-32_focal_point --pipeline_config_path=models/efficientdet_d0_coco17_tpu-32_focal_point/pipeline.config
+        python model_main_tf2.py --model_dir=models/efficientdet_d0_coco17_tpu-32_human --pipeline_config_path=models/efficientdet_d0_coco17_tpu-32_human/pipeline.config
 
-- 4 Optionnel : Si vous voulez observer le modèle s'entraîner (exécutez sur un nouveau terminal dans *training_demo*) :
+- Etape 4 (Optionnel) : Si vous voulez observer le modèle s'entraîner (exécutez sur un nouveau terminal dans *training_demo*) :
 
-        tensorboard --logdir=models/efficientdet_d0_coco17_tpu-32_focal_point 
+        tensorboard --logdir=models/efficientdet_d0_coco17_tpu-32_human 
  
 Puis ouvrez dans un navigateur : 'http://localhost:6006/'
 
-- 5 Enfin, pour exporter le modèle (exécutez dans *training_demo*) :
+- Etape 5: Enfin, pour exporter le modèle (exécutez dans *training_demo*) :
 
-        python .\exporter_main_v2.py --input_type image_tensor --pipeline_config_path .\models\efficientdet_d0_coco17_tpu-32_focal_point\pipeline.config --trained_checkpoint_dir .\models\efficientdet_d0_coco17_tpu-32_focal_point --output_directory .\exported-models\my_model_focal_point
+        python .\exporter_main_v2.py --input_type image_tensor --pipeline_config_path .\models\efficientdet_d0_coco17_tpu-32_human\pipeline.config --trained_checkpoint_dir .\models\efficientdet_d0_coco17_tpu-32_human --output_directory .\exported-models\my_model_human
 
 
 Attention : le modèle ne termine pas son entraînement de lui-même ! Il faut forcer l'arrêt de ce dernier (CTRL+C, fermer le terminal...). Mais pas de panique : le modèle fait des sauvegardes de manière automatique ! (Ça peut notamment être utile si vous voulez continuer un entraînement plus tard).
