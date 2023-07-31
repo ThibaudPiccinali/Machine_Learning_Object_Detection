@@ -1,0 +1,1 @@
+This folder should contain this folder : https://github.com/tensorflow/models (if you followed the tutorial).

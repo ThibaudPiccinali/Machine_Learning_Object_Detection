@@ -1,1 +1,0 @@
-This folder should include the cocoapi, if you follow the tutorial (https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/index.html)
